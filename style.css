@@ -1,0 +1,132 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent body from scrolling */
+}
+
+#matrixCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the canvas is behind the content */
+    opacity: 0.1; /* Set low opacity for a subtle effect */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 600px;
+    height: auto;
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, max-height 0.5s ease-in-out; /* Add max-height transition */
+}
+
+.container.small {
+    width: 25%;
+    height: auto;
+}
+
+.container.large {
+    width: 80%;
+    height: auto;
+}
+
+.password-container,
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.password-container input[type="password"],
+.search-container select,
+.search-container input[type="text"] {
+    flex: 2;
+    padding: 10px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+}
+
+.password-container button,
+.search-container button {
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    border: none;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+.password-container button:hover,
+.search-container button:hover {
+    background-color: #1663c7;
+}
+
+.password-container input[type="password"],
+.search-container input[type="text"] {
+    background-color: #2e2e2e;
+    color: white;
+}
+
+.search-container select {
+    background-color: #1a73e8;
+    color: white;
+    border-radius: 10px;
+    margin-right: 10px;
+    appearance: none; /* Remove default dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.search-container select option {
+    background-color: #1a73e8;
+    color: white;
+}
+
+.search-container select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #1663c7;
+}
+
+#results {
+    flex: 1; /* Take remaining space */
+    overflow-y: auto; /* Make results scrollable */
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+    max-height: 30vh;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Add opacity transition */
+    opacity: 0; /* Start with hidden */
+}
+
+#results.expanded {
+    max-height: 60vh; /* Expand to 60% of viewport height */
+    opacity: 1; /* Fully visible when expanded */
+}
+
+#results div {
+    background-color: #2e2e2e;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.hidden {
+    display: none; /* Hide elements with this class */
+}

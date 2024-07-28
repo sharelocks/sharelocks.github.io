@@ -1,1 +1,36 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Search</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container">
+        <div id="passwordContainer">
+            <h1>Enter Password</h1>
+            <div class="password-container">
+                <input type="password" id="passwordInput" placeholder="Password">
+                <button id="submitPassword">Submit</button>
+            </div>
+        </div>
+        <div id="searchContainer" class="hidden">
+            <h1>Search Database</h1>
+            <div class="search-container">
+                <select id="databaseSelect">
+                    <option value="" disabled selected>Select a database</option>
+                    <option value="Lebanon_Cars">Lebanon Cars</option>
+                    <option value="Lebanon_Facebook">Lebanon Facebook Database</option>
+                    <option value="France_Facebook">France Facebook Database</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button id="searchButton">Search</button>
+            </div>
+            <div id="results"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
