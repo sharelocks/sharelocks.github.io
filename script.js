@@ -1,68 +1,64 @@
-document.getElementById('submitPassword').addEventListener('click', function() {
-    const passwordInput = document.getElementById('passwordInput').value;
-    const obfuscatedPassword = atob('QW1zZkAyMjY=');
+// Matrix Effect Script
 
-    if (passwordInput === obfuscatedPassword) {
-        document.getElementById('passwordContainer').classList.add('hidden');
-        document.getElementById('searchContainer').classList.remove('hidden');
+const canvas = document.getElementById('matrixCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = Array(256).join(1).split('');
+let fontSize = 16;
+let columns = canvas.width / fontSize;
+
+const draw = () => {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#0F0';
+    ctx.font = `${fontSize}px monospace`;
+
+    letters.map((y_pos, index) => {
+        const text = String.fromCharCode(65 + Math.random() * 33);
+        const x_pos = index * fontSize;
+
+        ctx.fillText(text, x_pos, y_pos);
+
+        if (y_pos > 758 + Math.random() * 1e4) letters[index] = 0;
+        letters[index] = y_pos + fontSize;
+    });
+};
+
+setInterval(draw, 33);
+
+// Your existing script for handling password and search functionality
+document.getElementById('submitPassword').addEventListener('click', () => {
+    const passwordInput = document.getElementById('passwordInput').value;
+    const passwordContainer = document.getElementById('passwordContainer');
+    const searchContainer = document.getElementById('searchContainer');
+
+    // Add your password verification logic here
+    if (passwordInput === 'your_password') { // Replace 'your_password' with the actual password
+        passwordContainer.classList.add('hidden');
+        searchContainer.classList.remove('hidden');
     } else {
         alert('Incorrect password. Please try again.');
     }
 });
 
-document.getElementById('searchButton').addEventListener('click', function() {
-    searchDatabase();
-});
-
-document.getElementById('searchInput').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        searchDatabase();
-    }
-});
-
-function searchDatabase() {
-    const searchInput = document.getElementById('searchInput').value;
+document.getElementById('searchButton').addEventListener('click', () => {
     const databaseSelect = document.getElementById('databaseSelect').value;
+    const searchInput = document.getElementById('searchInput').value;
     const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = '';
-    resultsContainer.classList.remove('expanded'); // Reset state
-    resultsContainer.style.opacity = 0; // Hide results initially
 
-    fetch(`/search?q=${encodeURIComponent(searchInput)}`)
-        .then(response => response.json())
-        .then(results => {
-            console.log(results); // Log the results for debugging
+    // Add your search logic here
+    resultsContainer.innerHTML = `<div>Searching in ${databaseSelect} for "${searchInput}"...</div>`;
 
-            if (results.length === 0) {
-                const noResultsDiv = document.createElement('div');
-                noResultsDiv.textContent = 'No results found.';
-                resultsContainer.appendChild(noResultsDiv);
-            } else {
-                results.forEach(row => {
-                    const resultDiv = document.createElement('div');
-
-                    resultDiv.innerHTML = `
-                        <p><strong>Full Name:</strong> ${row.full_name}</p>
-                        <p><strong>Phone Number:</strong> ${row.phone}</p>
-                        <p><strong>Email:</strong> ${row.email}</p>
-                        <p><strong>Birthday:</strong> ${row.birthday}</p>
-                        <p><strong>Gender:</strong> ${row.gender}</p>
-                        <p><strong>Locale:</strong> ${row.locale}</p>
-                        <p><strong>Hometown:</strong> ${row.hometown}</p>
-                        <p><strong>Location:</strong> ${row.location}</p>
-                        <p><strong>Profile Link:</strong> <a href="${row.link}" target="_blank">${row.link}</a></p>
-                    `;
-
-                    resultsContainer.appendChild(resultDiv);
-                });
-            }
-
-            resultsContainer.classList.add('expanded'); // Add class to expand container
-            setTimeout(() => {
-                resultsContainer.style.opacity = 1; // Make results visible
-            }, 100); // Small delay to allow for transition
-        })
-        .catch(error => {
-            console.error('Error fetching results:', error);
-        });
-}
+    // Simulate a search result for demonstration
+    setTimeout(() => {
+        resultsContainer.innerHTML = `<div>Results for "${searchInput}" in ${databaseSelect}:</div>
+                                      <div>Result 1</div>
+                                      <div>Result 2</div>
+                                      <div>Result 3</div>`;
+        resultsContainer.classList.add('expanded');
+    }, 1000);
+});
