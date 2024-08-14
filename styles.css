@@ -18,6 +18,23 @@ body {
     opacity: 0.3; /* Set low opacity for a subtle effect */
 }
 
+.search-section button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: 2px solid #00FF00;
+    border-radius: 10px;
+    background-color: #000;
+    color: #00FF00;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.search-section button:hover {
+    background-color: #00FF00;
+    color: #000;
+    opacity: 0.3; /* Set low opacity for a subtle effect */
+}
+
 /* Search Section */
 .search-section {
     padding: 2em;
@@ -28,6 +45,8 @@ body {
     z-index: 2; /* Ensure search section is above the matrix effect */
     position: relative;
 }
+
+
 
 /* Category Section */
 .category-section {
@@ -49,6 +68,7 @@ body {
 .category-section button:hover {
     background-color: #00FF00;
     color: #000;
+    opacity: 0.3; /* Set low opacity for a subtle effect */
 }
 
 /* Scrollable Content */
@@ -70,6 +90,7 @@ body {
     position: relative;
     color: #00FF00;
     background-color: #000;
+    opacity: 0.3; /* Set low opacity for a subtle effect */
 }
 
 /* Results Styles */
@@ -90,6 +111,7 @@ body {
     width: 300px;
     box-shadow: 0 2px 5px rgba(0, 255, 0, 0.5);
     color: #00FF00;
+    opacity: 0.3; /* Set low opacity for a subtle effect */
 }
 
 .result-card h2 {
