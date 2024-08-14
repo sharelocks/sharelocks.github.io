@@ -3,25 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QxR Torrents</title>
+    <title>Tektōn Movies</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Canvas for Matrix Effect -->
-    <canvas id="matrixCanvas"></canvas>
+    <header>
+        <div class="logo">Tektōn</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html" class="active">Movies</a></li>
+                <li><a href="series.html">Series</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Search Section -->
-    <section class="search-section">
-        <input type="text" id="searchInput" placeholder="Search for torrents..." oninput="searchTorrents()">
-        <button id="showAllButton" onclick="displayAllTorrents()">Show All</button>
-        <div id="results"></div>
-    </section>
+    <main>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for movies...">
+        </div>
+        <div id="moviesGrid" class="grid-container">
+            <!-- Movie items will be dynamically inserted here -->
+        </div>
+    </main>
 
-    <!-- Category Buttons -->
-    <section class="category-section">
-        <button onclick="displayCategory('TV Show')">TV Shows</button>
-        <button onclick="displayCategory('Movie')">Movies</button>
-    </section>
+    <footer>
+        <p>&copy; 2024 Tektōn. All rights reserved.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
