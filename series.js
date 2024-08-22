@@ -36,7 +36,10 @@ function renderSeries(series) {
 
 // Filter series based on search input
 function filterSeries(series, query) {
-    return series.filter(item => item.Title.toLowerCase().includes(query.toLowerCase()));
+    query = query.toLowerCase();
+    return series.filter(item => {
+        return item.Title.toLowerCase().split(' ').some(word => word.startsWith(query));
+    });
 }
 
 // Event listener for the search bar

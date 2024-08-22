@@ -36,7 +36,10 @@ function renderMovies(movies) {
 
 // Filter movies based on search input
 function filterMovies(movies, query) {
-    return movies.filter(item => item.Title.toLowerCase().includes(query.toLowerCase()));
+    query = query.toLowerCase();
+    return movies.filter(item => {
+        return item.Title.toLowerCase().split(' ').some(word => word.startsWith(query));
+    });
 }
 
 // Event listener for the search bar
