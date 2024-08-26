@@ -26,3 +26,41 @@ To run this project locally, follow these steps:
    ```bash
    git clone https://github.com/yourusername/sharelocks.github.io.git
    cd sharelocks.github.io
+
+2. **Install the necessary Python packages:**
+   ```bash
+   pip install -r requirements.txt
+
+3. **Run the web application:**
+   Open index.html in your preferred web browser to view the site.
+
+## Usage
+
+**Home Page:** Displays all available torrents. You can search for specific torrents using the search bar.
+**Movies Page:** Displays torrents that are identified as movies. Torrents with the word "season" in their title are excluded.
+**Series Page:** Displays torrents that contain the word "season" in their title.
+
+## Running the Data Update Script
+
+To manually update the JSON data file:
+
+1. **Run the Python script:**
+   ```bash
+   python update-data.py
+
+
+2. **Push the updated data to GitHub:**
+   ```bash
+   git add QxR_Torrents.json
+   git commit -m "Update JSON data"
+   git push origin main
+
+## Automated Updates
+
+This project uses a scheduled script to automate the data update process every 10 hours:
+
+Windows: Use Task Scheduler to run the batch script update_and_push.bat.
+Linux: Use cron jobs to run the shell script update_and_push.sh.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
