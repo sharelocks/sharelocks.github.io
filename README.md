@@ -63,4 +63,4 @@ Windows: Use Task Scheduler to run the batch script update_and_push.bat.
 Linux: Use cron jobs to run the shell script update_and_push.sh.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License.
