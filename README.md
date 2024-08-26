@@ -3,6 +3,8 @@
 
 This project is a web application designed to gather and display all QxR torrents, providing a user-friendly interface for browsing and searching torrent files. The application is built using HTML, CSS, JavaScript, and Python, and is deployed on GitHub Pages.
 
+To see the page go to [sharelocks.github.io](https://sharelocks.github.io/)
+
 ## Table of Contents
 
 - [Features](#features)
