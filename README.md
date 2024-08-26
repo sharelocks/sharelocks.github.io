@@ -1,4 +1,4 @@
-#![16x16](https://github.com/user-attachments/assets/e3254085-6471-4390-93f6-e4ccc7665827) QxR Torrents Web Application
+#![output-onlinepngtools](https://github.com/user-attachments/assets/63897e5e-dc57-4d87-b230-bccfdddd2af5) QxR Torrents Web Application
 
 This project is a web application designed to gather and display all QxR torrents, providing a user-friendly interface for browsing and searching torrent files. The application is built using HTML, CSS, JavaScript, and Python, and is deployed on GitHub Pages.
 
