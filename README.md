@@ -3,13 +3,14 @@
 
 This project is a web application designed to gather and display all QxR torrents, providing a user-friendly interface for browsing and searching torrent files. The application is built using HTML, CSS, JavaScript, and Python, and is deployed on GitHub Pages.
 
+To see the page go to [sharelocks.github.io](https://sharelocks.github.io/)
+
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Automated Updates](#automated-updates)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Features
@@ -56,8 +57,50 @@ To manually update the JSON data file:
    git push origin main
 
 ## Automated Updates
+To automate the process of running the update-data.py script and pushing the updates to your GitHub repository every 10 hours, you can use a combination of scheduled tasks and scripts.
 
+**1. Create a Script to Automate the Process:**\
+For Windows (Batch Script):\
+Create a batch script, update_and_push.bat, with the following content:
+```bash
+@echo off
+cd /d "C:\\path\\to\\your\\project"
+python update-data.py
+git add .
+git commit -m "Automated update of JSON data"
+git push origin main
+```
+Replace `"C:\\path\\to\\your\\project"` with the actual path to your GitHub repository on your local machine.
 
+For Linux (Shell Script):\
+Create a shell script, update_and_push.sh, with the following content:
+```bash
+#!/bin/bash
+cd /path/to/your/project
+python3 update-data.py
+git add .
+git commit -m "Automated update of JSON data"
+git push origin main
+```
+Replace `"/path/to/your/project"` with the actual path to your GitHub repository on your local machine. Ensure the script is executable by running `chmod +x update_and_push.sh`.
+
+**2. Set Up a Scheduled Task to Run the Script Every 10 Hours:**
+On Windows:
+1. Open Task Scheduler.
+2. Click on Create Basic Task.
+3. Name the task (e.g., "Update JSON and Push to GitHub").
+4. Set the Trigger to "Daily," and configure the Repeat task every option to 10 hours.
+5. Set the Action to "Start a program" and browse to the location of update_and_push.bat.
+6. Complete the task setup.
+
+On Linux:
+1. Open a terminal.
+2. Edit your crontab file by running `crontab -e`.
+3. Add the following line to run the script every 10 hours:
+  ```bash
+0 */10 * * * /path/to/update_and_push.sh
+```
+This will run the script every 10 hours.
 
 ## License
 This project is licensed under the MIT License.
