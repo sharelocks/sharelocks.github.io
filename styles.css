@@ -196,4 +196,11 @@ main {
     transform: scale(1.5); /* Scale up to 1.5 times the original size */
 }
 
-
+footer {
+    text-align: center; /* Center the text */
+    padding: 20px 0; /* Add padding for spacing */
+    background-color: #1E1E1E; /* Ensure the background color matches the header */
+    position: relative; /* Keep it at the bottom but allow for flex growth */
+    width: 100%; /* Full width */
+    flex-shrink: 0; /* Prevent shrinking */
+}
