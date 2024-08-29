@@ -156,3 +156,44 @@ main {
 .grid-item .download-link:hover {
     background-color: #3AA0FF;
 }
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.btc-wallet {
+    color: #FFFFFF;
+    font-size: 0.9em;
+    margin-left: 20px; /* Adjust as needed for spacing */
+    display: flex;
+    align-items: center;
+}
+
+.btc-wallet p {
+    margin: 0;
+    padding-right: 10px; /* Space between text and QR code */
+}
+
+#btc-address {
+    font-weight: bold;
+}
+
+.btc-qr {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    margin-left: 10px; /* Space between QR code and address text */
+}
+
+.btc-qr {
+    width: 50px; /* Initial size */
+    height: auto;
+    margin-left: 10px; /* Space between QR code and address text */
+    transition: transform 0.3s ease; /* Animation effect */
+}
+
+.btc-qr:hover {
+    transform: scale(1.5); /* Scale up to 1.5 times the original size */
+}
+
+
