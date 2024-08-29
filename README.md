@@ -65,10 +65,26 @@ Create a batch script, update_and_push.bat, with the following content:
 ```bash
 @echo off
 cd /d "C:\\path\\to\\your\\project"
+
+:: Run the Python script
 python update-data.py
+
+:: Get the current date and time
+for /f "tokens=1-4 delims=/ " %%a in ('date /t') do set mydate=%%a-%%b-%%c
+for /f "tokens=1-2 delims=: " %%a in ('time /t') do set mytime=%%a:%%b
+
+:: Format the date and time to be used in the commit message
+set commitMessage="Automated update - %mydate% at %mytime%"
+
+:: Stage all changes
 git add .
-git commit -m "Automated update of JSON data"
+
+:: Commit with the formatted message
+git commit -m %commitMessage%
+
+:: Push the changes to the main branch
 git push origin main
+
 ```
 Replace `"C:\\path\\to\\your\\project"` with the actual path to your GitHub repository on your local machine.
 
