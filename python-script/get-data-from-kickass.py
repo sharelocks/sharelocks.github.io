@@ -12,7 +12,7 @@ init(autoreset=True)
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 
-# Function to fetch the magnet link from an individual torrent page
+# Function to fetch the magnet link from an individual torrent page.
 def fetch_magnet_link(torrent_url):
     response = requests.get(torrent_url)
     if response.status_code != 200:
