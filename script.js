@@ -10,6 +10,12 @@ function renderResults(results) {
     const resultsGrid = document.getElementById('resultsGrid');
     resultsGrid.innerHTML = ''; // Clear any existing content
 
+    if (results.length === 0) {
+        // Show 'No results found' message if no results match the search
+        showError("No results found.");
+        return;
+    }
+
     results.forEach(item => {
         const resultItem = document.createElement('div');
         resultItem.classList.add('grid-item');
@@ -38,19 +44,22 @@ function renderResults(results) {
     setTimeout(() => resultsGrid.classList.remove('fade-in'), 1000);
 }
 
-// Function to show an error message with animation
+// Function to show an error or information message with animation
 function showError(message) {
     const errorElement = document.createElement('div');
     errorElement.classList.add('error-message');
     errorElement.innerText = message;
-    document.body.appendChild(errorElement);
+
+    const errorContainer = document.getElementById('errorContainer');
+    errorContainer.innerHTML = ''; // Clear previous messages
+    errorContainer.appendChild(errorElement); // Append new message
 
     setTimeout(() => {
         errorElement.classList.add('fade-out');
         errorElement.addEventListener('transitionend', () => {
             errorElement.remove();
         });
-    }, 2000);
+    }, 100000);
 }
 
 // Filter results based on search input
