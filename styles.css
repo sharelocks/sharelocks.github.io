@@ -343,3 +343,16 @@ footer {
         max-width: 300px; /* Limit max width */
     }
 }
+
+/* Styling for the total title count */
+.title-count {
+    margin-top: 15px; /* Space above the count */
+    font-size: 1.1em; /* Slightly larger font size */
+    color: #FFFFFF; /* Default color for text */
+    text-align: center; /* Center align the text */
+}
+
+/* Styling for the red number */
+.red-number {
+    color: #FF0000; /* Red color for the number */
+}

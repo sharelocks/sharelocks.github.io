@@ -5,6 +5,24 @@ async function loadData() {
     return data;
 }
 
+// Function to format number with commas
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Function to count the total number of titles
+async function countTitles() {
+    const data = await loadData();
+    const totalTitles = data.length; // Get the total number of titles
+
+    // Format the total count with commas
+    const formattedCount = formatNumberWithCommas(totalTitles);
+
+    // Display the total count in the HTML with the number in red
+    const countContainer = document.getElementById('titleCount');
+    countContainer.innerHTML = `Total Titles: <span class="red-number">${formattedCount}</span>`;
+}
+
 // Function to render search results on the page
 function renderResults(results) {
     const resultsGrid = document.getElementById('resultsGrid');
@@ -59,7 +77,7 @@ function showError(message) {
         errorElement.addEventListener('transitionend', () => {
             errorElement.remove();
         });
-    }, 100000);
+    }, 5000); // Adjusted to hold the message longer
 }
 
 // Filter results based on search input
@@ -95,3 +113,6 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
+
+// Call countTitles to display the total number of titles when the page loads
+countTitles();

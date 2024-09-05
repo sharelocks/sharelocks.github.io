@@ -5,10 +5,34 @@ async function loadSeries() {
     return data.filter(item => item.Title.toLowerCase().includes('season'));
 }
 
+// Function to format number with commas
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Function to count the total number of series
+async function countSeries() {
+    const series = await loadSeries();
+    const totalSeries = series.length; // Get the total number of series
+
+    // Format the total count with commas
+    const formattedCount = formatNumberWithCommas(totalSeries);
+
+    // Display the total count in the HTML with the number in red
+    const countContainer = document.getElementById('seriesCount');
+    countContainer.innerHTML = `Total Series: <span class="red-number">${formattedCount}</span>`;
+}
+
 // Function to render series on the page
 function renderSeries(series) {
     const seriesGrid = document.getElementById('seriesGrid');
     seriesGrid.innerHTML = ''; // Clear any existing content
+
+    if (series.length === 0) {
+        // Show 'No results found' message if no series match the search
+        showError("No results found.");
+        return;
+    }
 
     series.forEach(item => {
         const seriesItem = document.createElement('div');
@@ -38,19 +62,22 @@ function renderSeries(series) {
     setTimeout(() => seriesGrid.classList.remove('fade-in'), 1000);
 }
 
-// Function to show an error message with animation
+// Function to show an error or information message with animation
 function showError(message) {
     const errorElement = document.createElement('div');
     errorElement.classList.add('error-message');
     errorElement.innerText = message;
-    document.body.appendChild(errorElement);
+
+    const errorContainer = document.getElementById('errorContainer');
+    errorContainer.innerHTML = ''; // Clear previous messages
+    errorContainer.appendChild(errorElement); // Append new message
 
     setTimeout(() => {
         errorElement.classList.add('fade-out');
         errorElement.addEventListener('transitionend', () => {
             errorElement.remove();
         });
-    }, 2000);
+    }, 5000); // Adjusted to hold the message longer
 }
 
 // Filter series based on search input
@@ -86,3 +113,6 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
+
+// Call countSeries to display the total number of series when the page loads
+countSeries();

@@ -5,10 +5,34 @@ async function loadMovies() {
     return data.filter(item => !item.Title.toLowerCase().includes('season'));
 }
 
+// Function to format number with commas
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// Function to count the total number of movies
+async function countMovies() {
+    const movies = await loadMovies();
+    const totalMovies = movies.length; // Get the total number of movies
+
+    // Format the total count with commas
+    const formattedCount = formatNumberWithCommas(totalMovies);
+
+    // Display the total count in the HTML with the number in red
+    const countContainer = document.getElementById('movieCount');
+    countContainer.innerHTML = `Total Movies: <span class="red-number">${formattedCount}</span>`;
+}
+
 // Function to render movies on the page
 function renderMovies(movies) {
     const moviesGrid = document.getElementById('moviesGrid');
     moviesGrid.innerHTML = ''; // Clear any existing content
+
+    if (movies.length === 0) {
+        // Show 'No results found' message if no movies match the search
+        showError("No results found.");
+        return;
+    }
 
     movies.forEach(item => {
         const movieItem = document.createElement('div');
@@ -38,19 +62,22 @@ function renderMovies(movies) {
     setTimeout(() => moviesGrid.classList.remove('fade-in'), 1000);
 }
 
-// Function to show an error message with animation
+// Function to show an error or information message with animation
 function showError(message) {
     const errorElement = document.createElement('div');
     errorElement.classList.add('error-message');
     errorElement.innerText = message;
-    document.body.appendChild(errorElement);
+
+    const errorContainer = document.getElementById('errorContainer');
+    errorContainer.innerHTML = ''; // Clear previous messages
+    errorContainer.appendChild(errorElement); // Append new message
 
     setTimeout(() => {
         errorElement.classList.add('fade-out');
         errorElement.addEventListener('transitionend', () => {
             errorElement.remove();
         });
-    }, 2000);
+    }, 5000); // Adjusted to hold the message longer
 }
 
 // Filter movies based on search input
@@ -86,3 +113,6 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
+
+// Call countMovies to display the total number of movies when the page loads
+countMovies();
