@@ -238,33 +238,34 @@ footer {
     }
 }
 
+
 /* Error message styling */
 .error-message {
     position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff4c4c;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1.1em;
-    opacity: 0;
-    animation: fadeInOut 0.5s ease forwards;
+    top: 20%; /* Position the message 20% from the top of the screen */
+    left: 50%; /* Center the message horizontally */
+    transform: translateX(-50%); /* Center the message horizontally */
+    background-color: #ff4c4c; /* Red background for the error message */
+    color: white; /* White text color */
+    padding: 10px 20px; /* Padding around the text */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1.1em; /* Slightly larger font size */
+    opacity: 0; /* Start with the message invisible */
+    animation: fadeInOut 3s ease forwards; /* Fade-in animation */
 }
 
 @keyframes fadeInOut {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
+    0% { opacity: 0; } /* Start invisible */
+    10% { opacity: 1; } /* Fade in */
+    90% { opacity: 1; } /* Stay visible */
+    100% { opacity: 0; } /* Fade out */
 }
 
 .fade-out {
-    animation: fadeOut 0.5s ease forwards;
+    animation: fadeOut 5s ease forwards; /* Fade-out animation */
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
+    from { opacity: 1; } /* Start fully visible */
+    to { opacity: 0; } /* End invisible */
 }
