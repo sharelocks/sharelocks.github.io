@@ -32,26 +32,57 @@ function renderMovies(movies) {
 
         moviesGrid.appendChild(movieItem);
     });
+
+    // Add animation class for a smooth fade-in effect
+    moviesGrid.classList.add('fade-in');
+    setTimeout(() => moviesGrid.classList.remove('fade-in'), 1000);
+}
+
+// Function to show an error message with animation
+function showError(message) {
+    const errorElement = document.createElement('div');
+    errorElement.classList.add('error-message');
+    errorElement.innerText = message;
+    document.body.appendChild(errorElement);
+
+    setTimeout(() => {
+        errorElement.classList.add('fade-out');
+        errorElement.addEventListener('transitionend', () => {
+            errorElement.remove();
+        });
+    }, 2000);
 }
 
 // Filter movies based on search input
 function filterMovies(movies, query) {
     query = query.toLowerCase();
-    return movies.filter(item => {
-        return item.Title.toLowerCase().split(' ').some(word => word.startsWith(query));
-    });
+    return movies.filter(item => item.Title.toLowerCase().includes(query));
 }
 
-// Event listener for the search bar
-document.getElementById('searchInput').addEventListener('input', async (event) => {
-    const query = event.target.value;
-    const movies = await loadMovies();
-    const filteredMovies = filterMovies(movies, query);
-    renderMovies(filteredMovies);
-});
+// Function to handle the search
+async function handleSearch() {
+    const query = document.getElementById('searchInput').value;
+    if (query.length > 0) { // Only search if there's a query
+        const movies = await loadMovies();
+        const filteredMovies = filterMovies(movies, query);
+        renderMovies(filteredMovies);
+    } else {
+        showError("Please enter a search term.");
+    }
+}
 
-// Initial load
-window.addEventListener('DOMContentLoaded', async () => {
+// Event listener for the search button
+document.getElementById('searchButton').addEventListener('click', handleSearch);
+
+// Event listener for the "Show All" button
+document.getElementById('showAllButton').addEventListener('click', async () => {
     const movies = await loadMovies();
     renderMovies(movies);
+});
+
+// Event listener for the Enter key on the search input
+document.getElementById('searchInput').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
 });

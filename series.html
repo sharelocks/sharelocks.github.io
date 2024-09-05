@@ -3,37 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QxR Torrent</title>
+    <title>Series - QxR Torrent</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="img/16x16.png" type="image/x-icon">
 </head>
 <body>
     <header>
-    <div class="header-container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="img/Qx-R-Logo1.png" alt="QxR Logo" class="logo-image">
-            </a>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/Qx-R-Logo1.png" alt="QxR Logo" class="logo-image">
+                </a>
+            </div>
+            <!-- BTC Wallet and QR Code -->
+            <div class="btc-wallet">
+                <p>Support us: <span id="btc-address">bc1q4da25adwntzfy7tcm4rghld66zc4wmg2mgjcv4</span></p>
+                <img src="img/BTC QR.jpeg" alt="BTC QR Code" class="btc-qr">
+            </div>
         </div>
-        <!-- BTC Wallet and QR Code -->
-        <div class="btc-wallet">
-            <p>Support us: <span id="btc-address">bc1q4da25adwntzfy7tcm4rghld66zc4wmg2mgjcv4</span></p>
-            <img src="img/BTC QR.jpeg" alt="BTC QR Code" class="btc-qr">
-        </div>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="movies.html">Movies</a></li>
-            <li><a href="series.html">Series</a></li>
-        </ul>
-    </nav>
-</header>
-
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="movies.html">Movies</a></li>
+                <li><a href="series.html" class="active">Series</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
-        <div class="search-bar">
+        <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search for series...">
+            <button id="searchButton">Search</button>
+            <button id="showAllButton">Show All</button>
         </div>
         <div id="seriesGrid" class="grid-container">
             <!-- Series items will be dynamically inserted here -->
@@ -41,7 +42,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Sherlock. All rights reserved.</p>
+        <p>&copy; 2024 Sharelock. All rights reserved.</p>
     </footer>
 
     <script src="series.js"></script>

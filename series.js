@@ -32,26 +32,57 @@ function renderSeries(series) {
 
         seriesGrid.appendChild(seriesItem);
     });
+
+    // Add animation class for a smooth fade-in effect
+    seriesGrid.classList.add('fade-in');
+    setTimeout(() => seriesGrid.classList.remove('fade-in'), 1000);
+}
+
+// Function to show an error message with animation
+function showError(message) {
+    const errorElement = document.createElement('div');
+    errorElement.classList.add('error-message');
+    errorElement.innerText = message;
+    document.body.appendChild(errorElement);
+
+    setTimeout(() => {
+        errorElement.classList.add('fade-out');
+        errorElement.addEventListener('transitionend', () => {
+            errorElement.remove();
+        });
+    }, 2000);
 }
 
 // Filter series based on search input
 function filterSeries(series, query) {
     query = query.toLowerCase();
-    return series.filter(item => {
-        return item.Title.toLowerCase().split(' ').some(word => word.startsWith(query));
-    });
+    return series.filter(item => item.Title.toLowerCase().includes(query));
 }
 
-// Event listener for the search bar
-document.getElementById('searchInput').addEventListener('input', async (event) => {
-    const query = event.target.value;
-    const series = await loadSeries();
-    const filteredSeries = filterSeries(series, query);
-    renderSeries(filteredSeries);
-});
+// Function to handle the search
+async function handleSearch() {
+    const query = document.getElementById('searchInput').value;
+    if (query.length > 0) { // Only search if there's a query
+        const series = await loadSeries();
+        const filteredSeries = filterSeries(series, query);
+        renderSeries(filteredSeries);
+    } else {
+        showError("Please enter a search term.");
+    }
+}
 
-// Initial load
-window.addEventListener('DOMContentLoaded', async () => {
+// Event listener for the search button
+document.getElementById('searchButton').addEventListener('click', handleSearch);
+
+// Event listener for the "Show All" button
+document.getElementById('showAllButton').addEventListener('click', async () => {
     const series = await loadSeries();
     renderSeries(series);
+});
+
+// Event listener for the Enter key on the search input
+document.getElementById('searchInput').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
 });

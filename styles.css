@@ -36,7 +36,6 @@ header .logo {
     display: block;
 }
 
-
 nav ul {
     list-style: none;
     display: flex;
@@ -63,29 +62,55 @@ main {
     padding: 20px;
 }
 
-.search-bar {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
+/* Update the .search-container class to align search bar and buttons in one row */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh; /* Adjust this to vertically align the container */
 }
 
-.search-bar input {
-    width: 100%;
+.search-container input {
+    width: 400px; /* Make the search bar wider */
     padding: 10px;
     font-size: 1.1em;
     border: 2px solid #444;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px; /* Rounded corners on the left */
     background-color: #222;
     color: #FFF;
     outline: none;
     transition: border-color 0.3s ease;
+    height: 42px; /* Ensure consistent height with buttons */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
-.search-bar input:focus {
+.search-container input:focus {
     border-color: #1E90FF;
 }
 
+.search-container button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    background-color: #1E90FF;
+    color: #FFF;
+    cursor: pointer;
+    height: 42px; /* Ensure consistent height with input */
+    margin-left: 0; /* Reset margin to prevent overlapping */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right */
+    transition: background-color 0.3s ease;
+}
+
+.search-container button + button {
+    margin-left: 10px; /* Add space between buttons */
+}
+
+.search-container button:hover {
+    background-color: #3AA0FF;
+}
+
 .grid-container {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
@@ -180,12 +205,6 @@ main {
 }
 
 .btc-qr {
-    width: 50px; /* Adjust size as needed */
-    height: auto;
-    margin-left: 10px; /* Space between QR code and address text */
-}
-
-.btc-qr {
     width: 50px; /* Initial size */
     height: auto;
     margin-left: 10px; /* Space between QR code and address text */
@@ -203,4 +222,49 @@ footer {
     position: relative; /* Keep it at the bottom but allow for flex growth */
     width: 100%; /* Full width */
     flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Add this animation at the end of the file */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Error message styling */
+.error-message {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff4c4c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    opacity: 0;
+    animation: fadeInOut 0.5s ease forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
