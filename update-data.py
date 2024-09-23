@@ -92,3 +92,35 @@ with open('QxR_Torrents.json', 'w') as file:
     json.dump(data, file, indent=4)
 
 print("Size fields cleaned and normalized.")
+
+# Load the JSON data
+with open('QxR_Torrents.json', 'r') as file:
+    data = json.load(file)
+
+# Extract all titles and remove duplicates
+titles = {entry["Title"] for entry in data}
+
+# Count unique titles
+total_titles = len(titles)
+
+
+# Function to update HTML files
+def update_html_file(html_file, placeholder_id, count):
+    with open(html_file, 'r') as file:
+        content = file.read()
+
+    # Find the placeholder and update it with the new count
+    new_content = content.replace(f'<div id="{placeholder_id}" class="title-count"></div>',
+                                  f'<div id="{placeholder_id}" class="title-count">Total Titles: {count}</div>')
+
+    # Write the updated content back to the file
+    with open(html_file, 'w') as file:
+        file.write(new_content)
+
+
+# Update the total titles in the respective HTML files
+update_html_file('index.html', 'titleCount', total_titles)
+update_html_file('movies.html', 'movieCount', total_titles)
+update_html_file('series.html', 'seriesCount', total_titles)
+
+print(f"Updated total titles: {total_titles}")
