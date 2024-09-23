@@ -11,7 +11,7 @@ def load_existing_json():
         return json.load(file)
 
 
-# Save updated JSON data with UTF-8 encoding
+# Save updated JSON data with UTF-8 encoding.
 def save_updated_json(data):
     with open(json_file_path, 'w', encoding='utf-8') as file:
         json.dump(data, file, indent=4, ensure_ascii=False)
