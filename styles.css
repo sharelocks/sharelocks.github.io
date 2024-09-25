@@ -356,3 +356,40 @@ footer {
 .red-number {
     color: #FF0000; /* Red color for the number */
 }
+
+/* Remove overflow: hidden from the body to allow scrolling */
+body {
+    margin: 0;
+    background-color: #121212;
+    color: #FFFFFF;
+}
+
+/* Create a particles container to contain the moving shapes */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the particles are behind everything */
+    overflow: hidden; /* Keep the shapes within the screen bounds */
+}
+
+.shape {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: float 10s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    100% {
+        transform: translateY(-1200px) translateX(300px);
+    }
+}
