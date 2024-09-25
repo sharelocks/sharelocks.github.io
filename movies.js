@@ -121,3 +121,53 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
+
+// Function to render search results for movies (or series)
+function renderMovies(movies) {
+    const moviesGrid = document.getElementById('moviesGrid');
+    moviesGrid.innerHTML = ''; // Clear any existing content
+
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    if (movies.length === 0) {
+        showError("No results found.");
+        clearSearchButton.style.display = 'none'; // Hide the clear button if no results
+        return;
+    }
+
+    movies.forEach(item => {
+        const movieItem = document.createElement('div');
+        movieItem.classList.add('grid-item');
+
+        const posterContent = item.poster
+            ? `<img src="${item.poster}" alt="${item.Title}">`
+            : `<div class="title-placeholder">${item.Title}</div>`;
+
+        movieItem.innerHTML = `
+            ${posterContent}
+            <div class="info">
+                <p>Seeders: ${item["No. Seed"]}</p>
+                <p>Leechers: ${item["No. Leechers"]}</p>
+                <p>Size: ${item.Size}</p>
+                <p>Upload Date: ${item["Date uploaded"]}</p>
+                <a href="${item["Magnet Link"]}" class="download-link">Download</a>
+            </div>
+        `;
+
+        moviesGrid.appendChild(movieItem);
+    });
+
+    clearSearchButton.style.display = 'inline-block'; // Show the clear button
+}
+
+// Clear the search results
+function clearSearchResults() {
+    const moviesGrid = document.getElementById('moviesGrid');
+    moviesGrid.innerHTML = ''; // Clear the results
+    document.getElementById('searchInput').value = ''; // Clear the search input
+
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    clearSearchButton.style.display = 'none'; // Hide the clear button
+}
+
+// Attach the clear search results function to the button
+document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);

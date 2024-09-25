@@ -121,3 +121,93 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
+
+// Function to render series on the page
+function renderSeries(series) {
+    const seriesGrid = document.getElementById('seriesGrid');
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    seriesGrid.innerHTML = ''; // Clear any existing content
+
+    if (series.length === 0) {
+        // Show 'No results found' message if no series match the search
+        showError("No results found.");
+        clearSearchButton.style.display = 'none'; // Hide the clear button if no results
+        return;
+    }
+
+    series.forEach(item => {
+        const seriesItem = document.createElement('div');
+        seriesItem.classList.add('grid-item');
+
+        const posterContent = item.poster
+            ? `<img src="${item.poster}" alt="${item.Title}">`
+            : `<div class="title-placeholder">${item.Title}</div>`;
+
+        seriesItem.innerHTML = `
+            ${posterContent}
+            <div class="info">
+                <p>Seeders: ${item["No. Seed"]}</p>
+                <p>Leechers: ${item["No. Leechers"]}</p>
+                <p>Size: ${item.Size}</p>
+                <p>Upload Date: ${item["Date uploaded"]}</p>
+                <a href="${item["Magnet Link"]}" class="download-link">Download</a>
+            </div>
+        `;
+
+        seriesGrid.appendChild(seriesItem);
+    });
+
+    // Show the clear button when there are results
+    clearSearchButton.style.display = 'inline-block';
+}
+
+// Function to clear search results
+function clearSearchResults() {
+    const seriesGrid = document.getElementById('seriesGrid');
+    seriesGrid.innerHTML = ''; // Clear the search results
+    document.getElementById('searchInput').value = ''; // Clear the search input
+
+    // Hide the clear button
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    clearSearchButton.style.display = 'none';
+}
+
+// Attach the clear search results function to the button
+document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
+
+// Filter series based on search input
+function filterSeries(series, query) {
+    query = query.toLowerCase();
+    return series.filter(item => item.Title.toLowerCase().includes(query));
+}
+
+// Function to handle the search
+async function handleSearch() {
+    const query = document.getElementById('searchInput').value;
+    if (query.length > 0) { // Only search if there's a query
+        const series = await loadSeries();
+        const filteredSeries = filterSeries(series, query);
+        renderSeries(filteredSeries);
+    } else {
+        showError("Please enter a search term.");
+    }
+}
+
+// Event listener for the search button
+document.getElementById('searchButton').addEventListener('click', handleSearch);
+
+// Event listener for the "Show All" button
+document.getElementById('showAllButton').addEventListener('click', async () => {
+    const series = await loadSeries();
+    renderSeries(series);
+});
+
+// Event listener for the Enter key on the search input
+document.getElementById('searchInput').addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        handleSearch();
+    }
+});
+
+// Call countSeries to display the total number of series when the page loads
+displayTotalSeries();

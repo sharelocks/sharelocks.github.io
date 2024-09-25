@@ -122,3 +122,56 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
     }
 });
 
+// Function to render search results on the page
+function renderResults(results) {
+    const resultsGrid = document.getElementById('resultsGrid');
+    resultsGrid.innerHTML = ''; // Clear any existing content
+
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    if (results.length === 0) {
+        // Show 'No results found' message if no results match the search
+        showError("No results found.");
+        clearSearchButton.style.display = 'none'; // Hide the clear button if no results
+        return;
+    }
+
+    results.forEach(item => {
+        const resultItem = document.createElement('div');
+        resultItem.classList.add('grid-item');
+
+        const posterContent = item.poster
+            ? `<img src="${item.poster}" alt="${item.Title}">`
+            : `<div class="title-placeholder">${item.Title}</div>`;
+
+        resultItem.innerHTML = `
+            ${posterContent}
+            <div class="info">
+                <p>Seeders: ${item["No. Seed"]}</p>
+                <p>Leechers: ${item["No. Leechers"]}</p>
+                <p>Size: ${item.Size}</p>
+                <p>Upload Date: ${item["Date uploaded"]}</p>
+                <a href="${item["Magnet Link"]}" class="download-link">Download</a>
+            </div>
+        `;
+
+        resultsGrid.appendChild(resultItem);
+    });
+
+    // Show the clear button when results are shown
+    clearSearchButton.style.display = 'inline-block';
+}
+
+// Function to clear search results
+function clearSearchResults() {
+    const resultsGrid = document.getElementById('resultsGrid');
+    resultsGrid.innerHTML = ''; // Clear the results
+    document.getElementById('searchInput').value = ''; // Clear the search input
+
+    // Hide the clear button
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    clearSearchButton.style.display = 'none';
+}
+
+// Attach the clear search results function to the button
+document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
+
