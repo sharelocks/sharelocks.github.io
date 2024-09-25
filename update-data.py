@@ -119,8 +119,8 @@ def update_html_file(html_file, placeholder_id, count):
 
 
 # Update the total titles in the respective HTML files
-update_html_file('index.html', 'titleCount', total_titles)
-update_html_file('movies.html', 'movieCount', total_titles)
-update_html_file('series.html', 'seriesCount', total_titles)
-
-print(f"Updated total titles: {total_titles}")
+# update_html_file('index.html', 'titleCount', total_titles)
+# update_html_file('movies.html', 'movieCount', total_titles)
+# update_html_file('series.html', 'seriesCount', total_titles)
+#
+# print(f"Updated total titles: {total_titles}")
