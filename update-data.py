@@ -103,24 +103,39 @@ titles = {entry["Title"] for entry in data}
 # Count unique titles
 total_titles = len(titles)
 
+# Path to the counts file
+counts_file_path = 'counts.json'
 
-# Function to update HTML files
-def update_html_file(html_file, placeholder_id, count):
-    with open(html_file, 'r') as file:
-        content = file.read()
-
-    # Find the placeholder and update it with the new count
-    new_content = content.replace(f'<div id="{placeholder_id}" class="title-count"></div>',
-                                  f'<div id="{placeholder_id}" class="title-count">Total Titles: {count}</div>')
-
-    # Write the updated content back to the file
-    with open(html_file, 'w') as file:
-        file.write(new_content)
+# Save the counts to a JSON file
+def save_counts(counts_data):
+    with open(counts_file_path, 'w', encoding='utf-8') as file:
+        json.dump(counts_data, file, indent=4)
 
 
-# Update the total titles in the respective HTML files
-# update_html_file('index.html', 'titleCount', total_titles)
-# update_html_file('movies.html', 'movieCount', total_titles)
-# update_html_file('series.html', 'seriesCount', total_titles)
-#
-# print(f"Updated total titles: {total_titles}")
+# Function to count movies and series
+def count_titles():
+    data = load_existing_json()
+
+    # Count movies (titles without "season")
+    movies_count = len([item for item in data if 'season' not in item['Title'].lower()])
+
+    # Count series (titles containing "season")
+    series_count = len([item for item in data if 'season' in item['Title'].lower()])
+
+    # Total count
+    total_count = len(data)
+
+    # Prepare the counts data
+    counts_data = {
+        'total_titles': total_count,
+        'total_movies': movies_count,
+        'total_series': series_count
+    }
+
+    # Save the counts
+    save_counts(counts_data)
+
+
+# Run the count function
+count_titles()
+print(f"Counts have been updated and saved to {counts_file_path}")

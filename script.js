@@ -10,18 +10,26 @@ function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// Function to count the total number of titles
-async function countTitles() {
-    const data = await loadData();
-    const totalTitles = data.length; // Get the total number of titles
+// Load the counts from the counts.json file
+async function loadCounts() {
+    const response = await fetch('counts.json');
+    const counts = await response.json();
+    return counts;
+}
 
-    // Format the total count with commas
-    const formattedCount = formatNumberWithCommas(totalTitles);
+// Function to display the total number of titles
+async function displayTotalTitles() {
+    const counts = await loadCounts();
+    const formattedCount = formatNumberWithCommas(counts.total_titles);
 
-    // Display the total count in the HTML with the number in red
+    // Display the total count in the HTML
     const countContainer = document.getElementById('titleCount');
     countContainer.innerHTML = `Total Titles: <span class="red-number">${formattedCount}</span>`;
 }
+
+// Call the function to display the total titles on page load
+displayTotalTitles();
+
 
 // Function to render search results on the page
 function renderResults(results) {
@@ -114,5 +122,3 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
     }
 });
 
-// Call countTitles to display the total number of titles when the page loads
-countTitles();

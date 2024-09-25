@@ -10,18 +10,26 @@ function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// Function to count the total number of movies
-async function countMovies() {
-    const movies = await loadMovies();
-    const totalMovies = movies.length; // Get the total number of movies
+// Load the counts from the counts.json file
+async function loadCounts() {
+    const response = await fetch('counts.json');
+    const counts = await response.json();
+    return counts;
+}
 
-    // Format the total count with commas
-    const formattedCount = formatNumberWithCommas(totalMovies);
+// Function to display the total number of movies
+async function displayTotalMovies() {
+    const counts = await loadCounts();
+    const formattedCount = formatNumberWithCommas(counts.total_movies);
 
-    // Display the total count in the HTML with the number in red
+    // Display the total count in the HTML
     const countContainer = document.getElementById('movieCount');
     countContainer.innerHTML = `Total Movies: <span class="red-number">${formattedCount}</span>`;
 }
+
+// Call the function to display the total movies on page load
+displayTotalMovies();
+
 
 // Function to render movies on the page
 function renderMovies(movies) {
@@ -113,6 +121,3 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
-
-// Call countMovies to display the total number of movies when the page loads
-countMovies();

@@ -10,18 +10,26 @@ function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// Function to count the total number of series
-async function countSeries() {
-    const series = await loadSeries();
-    const totalSeries = series.length; // Get the total number of series
+// Load the counts from the counts.json file
+async function loadCounts() {
+    const response = await fetch('counts.json');
+    const counts = await response.json();
+    return counts;
+}
 
-    // Format the total count with commas
-    const formattedCount = formatNumberWithCommas(totalSeries);
+// Function to display the total number of series
+async function displayTotalSeries() {
+    const counts = await loadCounts();
+    const formattedCount = formatNumberWithCommas(counts.total_series);
 
-    // Display the total count in the HTML with the number in red
+    // Display the total count in the HTML
     const countContainer = document.getElementById('seriesCount');
     countContainer.innerHTML = `Total Series: <span class="red-number">${formattedCount}</span>`;
 }
+
+// Call the function to display the total series on page load
+displayTotalSeries();
+
 
 // Function to render series on the page
 function renderSeries(series) {
@@ -113,6 +121,3 @@ document.getElementById('searchInput').addEventListener('keypress', (event) => {
         handleSearch();
     }
 });
-
-// Call countSeries to display the total number of series when the page loads
-countSeries();
