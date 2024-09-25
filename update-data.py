@@ -140,3 +140,4 @@ def count_titles():
 # Run the count function.
 count_titles()
 print(f"Counts have been updated and saved to {counts_file_path}")
+print(f"Total number of titles is now: {int(total_titles):,}")
