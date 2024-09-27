@@ -47,7 +47,7 @@ def update_json_with_xlsx(xlsx_path, json_path, output_json_path):
 
 # Example usage
 xlsx_file_path = 'QxR Torrents.xlsx'
-json_file_path = '../QxR_Torrents.json'
-output_json_path = '../QxR_Torrents.json'
+json_file_path = '../data/QxR_Torrents.json'
+output_json_path = '../data/QxR_Torrents.json'
 
 update_json_with_xlsx(xlsx_file_path, json_file_path, output_json_path)

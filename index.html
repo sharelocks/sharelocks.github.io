@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JEP4K7PXY"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-1JEP4K7PXY');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QxR Torrent</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="css/index_style.css"> <!-- Specific styles for index.html -->
     <link rel="icon" href="img/16x16.png" type="image/x-icon">
 </head>
 <body>
@@ -21,42 +12,25 @@
         <div class="header-container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="img/Qx-R-Logo1.png" alt="QxR Logo" class="logo-image">
+                    <img src="img/HD Sharelock Signature.png" alt="Main Logo" class="logo-image">
                 </a>
             </div>
-            <!-- BTC Wallet and QR Code -->
-            <div class="btc-wallet">
-                <p>Support Me: <span id="btc-address">bc1q4da25adwntzfy7tcm4rghld66zc4wmg2mgjcv4</span></p>
-                <img src="img/BTC QR.jpeg" alt="BTC QR Code" class="btc-qr">
-            </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="movies.html">Movies</a></li>
-                <li><a href="series.html">Series</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search for torrents...">
-            <button id="searchButton">Search</button>
-            <button id="showAllButton">Show All</button>
-            <button id="clearSearchButton" style="display: none;">Clear Results</button>
+        <h1>Welcome to Our Site</h1>
+        <div class="menu-container">
+            <a href="QxR.html" class="menu-link">QxR</a>
+            <a href="construction.html" class="menu-link">UTR</a>
         </div>
-        <div id="titleCount" class="title-count">Total Titles: </div> <!-- Add this line for displaying total titles -->
-        <div id="resultsGrid" class="grid-container">
-            <!-- Search results will be dynamically inserted here -->
-        </div>
-        <div id="errorContainer"></div> <!-- Add this line for error messages -->
     </main>
 
     <footer>
         <p>&copy; 2024 Sharelock. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Link to the dedicated JavaScript file for this page -->
+    <script src="js/index.js"></script> <!-- Specific JavaScript for the index.html -->
 </body>
 </html>

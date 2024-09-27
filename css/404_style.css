@@ -1,0 +1,87 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #121212;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    z-index: 1; /* Make sure it's above the particles */
+}
+
+h1 {
+    font-size: 8rem;
+    margin: 0;
+    color: #1E90FF;
+    animation: floatText 2s ease-in-out infinite;
+}
+
+p {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    color: #BBBBBB;
+}
+
+.home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #1E90FF;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+    background-color: #3AA0FF;
+}
+
+/* Particle styling */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Float text animation */
+@keyframes floatText {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Particle shape animation */
+.shape {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    100% {
+        transform: translateY(-1200px) translateX(300px);
+    }
+}

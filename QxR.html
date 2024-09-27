@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JEP4K7PXY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1JEP4K7PXY');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QxR Torrent</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img/16x16.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/Qx-R-Logo1.png" alt="QxR Logo" class="logo-image">
+                </a>
+            </div>
+            <div class="btc-wallet">
+                <p>Support Me: <span id="btc-address">bc1q4da25adwntzfy7tcm4rghld66zc4wmg2mgjcv4</span></p>
+                <img src="img/BTC QR.jpeg" alt="BTC QR Code" class="btc-qr">
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">QxR</a>
+                    <ul class="dropdown-content">
+                        <li><a href="QxR.html">Home</a></li>
+                        <li><a href="movies.html">Movies</a></li>
+                        <li><a href="series.html">Series</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">UTR</a>
+                    <ul class="dropdown-content">
+                        <li><a href="utr_home.html">Home</a></li>
+                        <li><a href="utr_movies.html">Movies</a></li>
+                        <li><a href="utr_series.html">Series</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for torrents...">
+            <button id="searchButton">Search</button>
+            <button id="showAllButton">Show All</button>
+            <button id="clearSearchButton" style="display: none;">Clear Results</button>
+        </div>
+        <div id="titleCount" class="title-count">Total Titles: </div>
+        <div id="resultsGrid" class="grid-container"></div>
+        <div id="errorContainer"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sharelock. All rights reserved.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

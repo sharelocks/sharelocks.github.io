@@ -7,13 +7,12 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-1JEP4K7PXY');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Series - QxR Torrent</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="img/16x16.png" type="image/x-icon">
 </head>
 <body>
@@ -30,13 +29,26 @@
                 <img src="img/BTC QR.jpeg" alt="BTC QR Code" class="btc-qr">
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="movies.html">Movies</a></li>
-                <li><a href="series.html" class="active">Series</a></li>
-            </ul>
-        </nav>
+            <nav>
+                <ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">QxR</a>
+                        <ul class="dropdown-content">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="movies.html">Movies</a></li>
+                            <li><a href="series.html">Series</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">UTR</a>
+                        <ul class="dropdown-content">
+                            <li><a href="utr_home.html">Home</a></li>
+                            <li><a href="utr_movies.html">Movies</a></li>
+                            <li><a href="utr_series.html">Series</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
     </header>
 
     <main>
@@ -46,17 +58,15 @@
             <button id="showAllButton">Show All</button>
             <button id="clearSearchButton" style="display: none;">Clear Results</button>
         </div>
-        <div id="seriesCount" class="title-count">Total Titles: </div> <!-- Add this line for displaying total series -->
-        <div id="seriesGrid" class="grid-container">
-            <!-- Series items will be dynamically inserted here -->
-        </div>
-        <div id="errorContainer"></div> <!-- Add this line for error messages -->
+        <div id="seriesCount" class="title-count">Total Titles: </div>
+        <div id="seriesGrid" class="grid-container"></div>
+        <div id="errorContainer"></div>
     </main>
 
     <footer>
         <p>&copy; 2024 Sharelock. All rights reserved.</p>
     </footer>
 
-    <script src="series.js"></script>
+    <script src="js/series.js"></script>
 </body>
 </html>
