@@ -1,12 +1,3 @@
-// List of valid URLs in your SPA
-const validUrls = ['/', '/QxR.html', '/UTR.html']; // Add other valid URLs
-
-// Check if the current URL is in the valid list
-if (!validUrls.includes(window.location.pathname)) {
-    // Redirect to the 404 page
-    window.location.href = '/404.html'; // Adjust this based on your directory structure
-}
-
 // Create a container for particles in the body
 const particlesContainer = document.querySelector('.particles-container');
 

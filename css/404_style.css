@@ -10,18 +10,24 @@ body {
     background-color: #121212;
     color: white;
     overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .container {
     text-align: center;
-    z-index: 1; /* Make sure it's above the particles */
+    z-index: 1; /* Ensure it's above the particles */
 }
 
 h1 {
     font-size: 8rem;
     margin: 0;
-    color: #1E90FF;
-    animation: floatText 2s ease-in-out infinite;
+    color: #FF6347; /* Update the color for a fresh look */
+    animation: floatText 3s ease-in-out infinite;
 }
 
 p {
@@ -34,16 +40,17 @@ p {
     display: inline-block;
     margin-top: 20px;
     padding: 15px 30px;
-    background-color: #1E90FF;
+    background-color: #FF6347; /* Match the new color */
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
     border-radius: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .home-button:hover {
-    background-color: #3AA0FF;
+    background-color: #FF4500;
+    transform: scale(1.1); /* Add a slight scale effect on hover */
 }
 
 /* Particle styling */
@@ -72,7 +79,7 @@ p {
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: rgba(0, 255, 255, 0.7);
+    background-color: rgba(255, 165, 0, 0.7);
     border-radius: 50%;
     animation: float 10s linear infinite;
 }
