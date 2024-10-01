@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import json
 
 # Load existing JSON data with UTF-8 encoding.
-json_file_path = '../sharelocks.github.io/QxR_Torrents.json'
+json_file_path = 'data/QxR_Torrents.json'
 
 
 def load_existing_json():
@@ -80,7 +80,7 @@ def clean_size(size_str):
 
 
 # Load the JSON file.
-with open('QxR_Torrents.json', 'r', encoding='utf-8') as file:
+with open('data/QxR_Torrents.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # Clean the "Size" field in each entry.
@@ -88,13 +88,13 @@ for entry in data:
     entry['Size'] = clean_size(entry['Size'])
 
 # Save the cleaned data back to the JSON file.
-with open('QxR_Torrents.json', 'w') as file:
+with open('data/QxR_Torrents.json', 'w') as file:
     json.dump(data, file, indent=4)
 
 print("Size fields cleaned and normalized.")
 
 # Load the JSON data.
-with open('QxR_Torrents.json', 'r') as file:
+with open('data/QxR_Torrents.json', 'r') as file:
     data = json.load(file)
 
 # Extract all titles and remove duplicates.
@@ -104,7 +104,7 @@ titles = {entry["Title"] for entry in data}
 total_titles = len(titles)
 
 # Path to the counts file.
-counts_file_path = 'counts.json'
+counts_file_path = 'data/counts.json'
 
 
 # Save the counts to a JSON file.
