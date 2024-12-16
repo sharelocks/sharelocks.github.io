@@ -129,7 +129,7 @@ def count_titles():
     # Prepare the counts' data.
     counts_data = {
         'total_titles': total_count,
-        'total_movies': movies_count,
+        'total_movies': movies_count, # 5640 desktop aw printer
         'total_series': series_count
     }
 
